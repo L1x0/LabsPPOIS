@@ -1,4 +1,4 @@
-package org.FirstLabPPOIS;
+package by.astakhau.dictionary;
 
 import java.util.NoSuchElementException;
 import java.util.TreeMap;
@@ -32,7 +32,6 @@ public class Dictionary implements Comparable<Dictionary> {
 
     public String get(String key) {
         if (dictionaryTree.containsKey(key)) {
-            System.out.println(key + " - " + dictionaryTree.get(key));
 
             return dictionaryTree.get(key);
         } else {

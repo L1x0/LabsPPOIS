@@ -1,4 +1,4 @@
-package org.FirstLabPPOIS;
+package by.astakhau.dictionary;
 
 
 public class Main {

@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.FirstLabPPOIS</groupId>
-    <artifactId>FirstLabWithTests</artifactId>
+    <groupId>by.astakhau</groupId>
+    <artifactId>dictionary</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -40,7 +40,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.FirstLabPPOIS.Main</mainClass> <!-- Укажите путь к вашему классу Main -->
+                            <mainClass>by.astakhau.dictionary.Main</mainClass> <!-- Укажите путь к вашему классу Main -->
                         </manifest>
                     </archive>
                 </configuration>

@@ -1,4 +1,4 @@
-package org.FirstLabPPOIS;
+package by.astakhau.dictionary;
 
 import java.io.InputStream;
 import java.util.NoSuchElementException;
@@ -93,7 +93,7 @@ public class UI {
                     System.out.println("Введите слово для поиска");
 
                     try {
-                        dictionary.get(sc.next());
+                        System.out.println(dictionary.get(sc.next()));
                     } catch (NoSuchElementException e) {
                         System.out.println(e.getMessage());
                     }

@@ -1,4 +1,4 @@
-import org.FirstLabPPOIS.Dictionary;
+import by.astakhau.dictionary.Dictionary;
 import org.junit.jupiter.api.Test;
 import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
