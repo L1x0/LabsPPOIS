@@ -26,7 +26,7 @@ public class Company {
         marketingDepartment.setFinanceDepartment(financeDepartment);
         customerServiceDepartment.setLogisticsDepartment(logisticsDepartment);
     }
-    
+
     public void transferMoneyToFinanceDepartment(int count) {
         marketingDepartment.sendMoneyToFinanceDepartment(count);
     }
