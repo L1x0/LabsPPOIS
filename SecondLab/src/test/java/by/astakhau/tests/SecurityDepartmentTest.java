@@ -1,3 +1,5 @@
+package by.astakhau.tests;
+
 import by.astakhau.autotransportcompany.SecurityDepartment;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;

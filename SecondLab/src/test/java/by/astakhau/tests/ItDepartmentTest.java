@@ -1,3 +1,5 @@
+package by.astakhau.tests;
+
 import by.astakhau.autotransportcompany.Employee;
 import by.astakhau.autotransportcompany.ItDepartment;
 import org.junit.jupiter.api.Test;

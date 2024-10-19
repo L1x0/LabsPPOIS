@@ -1,3 +1,5 @@
+package by.astakhau.tests;
+
 import by.astakhau.autotransportcompany.Client;
 import by.astakhau.autotransportcompany.CustomerServiceDepartment;
 import by.astakhau.autotransportcompany.LogisticsDepartment;
