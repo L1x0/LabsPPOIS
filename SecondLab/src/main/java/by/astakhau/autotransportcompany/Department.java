@@ -5,12 +5,12 @@ import java.util.ArrayList;
 abstract class Department {
     private ArrayList<Employee> employees;
     private int countOfEmployees;
-    private ArrayList<String> Tasks;
+    private ArrayList<String> tasks;
 
     public Department(ArrayList<Employee> employees) {
         this.employees = employees;
         this.countOfEmployees = employees.size();
-        this.Tasks = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
     public ArrayList<Employee> getEmployees() {
@@ -27,11 +27,11 @@ abstract class Department {
     }
 
     public ArrayList<String> getTasks() {
-        return Tasks;
+        return tasks;
     }
 
     public void addTasks(ArrayList<String> tasks) {
-        Tasks.addAll(tasks);
+       this.tasks.addAll(tasks);
     }
 
     public void addEmployee(Employee employee) {
@@ -53,17 +53,17 @@ abstract class Department {
     }
 
     public void addTask(String task) {
-        this.Tasks.add(task);
+        this.tasks.add(task);
     }
 
     public void removeTask(String task) {
-        this.Tasks.remove(task);
+        this.tasks.remove(task);
     }
 
     @Override
     public String toString() {
         return "Department [employees=" + employees + ", countOfEmployees="
-                + countOfEmployees + ", Tasks=" + Tasks + "]";
+                + countOfEmployees + ", Tasks=" + tasks + "]";
     }
 
 }
