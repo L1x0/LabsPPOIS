@@ -1,5 +1,7 @@
 package by.astakhau.librarymanegmentsystem;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Member extends People {
@@ -51,12 +53,28 @@ public class Member extends People {
     }
 
     public void addBook(int id) {
-        this.takenBooks.add(new Book(id));
-        this.libraryAccount.setBooks(this.takenBooks);
+        ArrayList<Book> books = new ArrayList<>(this.takenBooks);
+        books.add(new Book(id));
+
+        this.takenBooks = books;
+        this.libraryAccount.setBooks(books);
     }
 
     public void removeBook(int id) {
-        this.takenBooks.remove(new Book(id));
-        this.libraryAccount.setBooks(this.takenBooks);
+        ArrayList<Book> books = new ArrayList<>(this.takenBooks);
+
+        for (int i = 0; i < books.size(); i++) {
+            if (books.get(i).getLibraryID() == id) {
+                books.remove(i);
+                break;
+            }
+        }
+
+        this.takenBooks = books;
+        this.libraryAccount.setBooks(books);
+    }
+
+    public Member(String name, String lastName, int age, int height, int weight) {
+        super(name, lastName, age, height, weight);
     }
 }

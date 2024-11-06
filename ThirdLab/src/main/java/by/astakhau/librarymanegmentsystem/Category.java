@@ -13,6 +13,9 @@ public class Category {
         this.books = books;
     }
 
+    public Category() {
+    }
+
     public String getName() {
         return name;
     }

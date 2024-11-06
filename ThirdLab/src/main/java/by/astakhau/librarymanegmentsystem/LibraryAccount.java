@@ -1,5 +1,6 @@
 package by.astakhau.librarymanegmentsystem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class LibraryAccount {
@@ -7,7 +8,7 @@ public final class LibraryAccount {
     private List<Book> books;
     private String accountLogin;
     private String accountPassword;
-    private List<Notification> notifications;
+    private ArrayList<Notification> notifications = new ArrayList<>();
 
     public LibraryAccount(String libraryName, List<Book> books, String accountLogin, String accountPassword) {
         this.libraryName = libraryName;
@@ -20,35 +21,23 @@ public final class LibraryAccount {
         return libraryName;
     }
 
-    private void setAccountPassword(String accountPassword) {
-        this.accountPassword = accountPassword;
-    }
-
     public boolean authentication(String accountLogin, String accountPassword) {
         return accountLogin.equals(this.accountLogin) && accountPassword.equals(this.accountPassword);
-    }
-
-    public void changePassword(String accountLogin, String accountPassword, String newPassword) {
-        if (authentication(accountLogin, accountPassword)) {
-            setAccountPassword(newPassword);
-        }
     }
 
     public void setBooks(List<Book> books) {
         this.books = books;
     }
 
+    public List<Book> getBooks() {
+        return this.books;
+    }
+
     public void addNotifications(Notification notification) {
-        if (notifications != null) {
-            this.notifications.add(notification);
-        }
+        this.notifications.add(notification);
     }
 
-    public void watchNotification() {
-        this.notifications.remove(0);
-    }
-
-    public void watchNotifications(Notification notification) {
-        this.notifications.clear();
+    public int getNotificationsCount() {
+        return this.notifications != null ? this.notifications.size() : 0;
     }
 }
