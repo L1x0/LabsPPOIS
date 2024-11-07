@@ -7,12 +7,12 @@ public interface AdjacencyMatrix {
 
     int getVertexCount();
     int getEdgeCount();
-    int getVertexDegree();
-    int getEdgeDegree();
+    int getInVertexDegree(String name);
+    int getOutVertexDegree(String name);
 
-    void addVertex();
+    void addVertex(String name);
     void addEdge(String FromVertex, String ToVertex);
-    void removeVertex();
+    void removeVertex(String name);
     void removeEdge(String FromVertex, String ToVertex);
     void clear();
 
