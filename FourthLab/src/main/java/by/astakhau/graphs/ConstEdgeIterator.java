@@ -10,6 +10,10 @@ public class ConstEdgeIterator {
     int actualX = 1, actualY = 1;
 
     public ConstEdgeIterator(int startX, int startY, Graph graph) {
+        if (startX <= 0 || startY <= 0) {
+            throw new IllegalArgumentException("startX and startY must be non-negative");
+        }
+
         this.actualX = startX;
         this.actualY = startY;
         this.graph = graph;

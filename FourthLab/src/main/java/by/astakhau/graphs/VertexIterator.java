@@ -10,6 +10,10 @@ public class VertexIterator implements ListIterator<String> {
     private ArrayList<ArrayList<String>> adjacencyMatrix;
 
     public VertexIterator(int startPoint, Graph graph) {
+        if (startPoint <= 0) {
+            throw new IllegalArgumentException("startPoint must be greater than zero");
+        }
+
         this.actualPoint = startPoint;
         this.graph = graph;
         this.adjacencyMatrix = graph.getAdjacencyMatrix();
@@ -33,11 +37,15 @@ public class VertexIterator implements ListIterator<String> {
 
     @Override
     public boolean hasPrevious() {
-        return actualPoint - 1 >= 0;
+        return actualPoint - 1 >= 1;
     }
 
     @Override
     public String previous() {
+        if (!hasPrevious()) {
+            throw new NoSuchElementException();
+        }
+
         actualPoint--;
         return this.adjacencyMatrix.get(0).get(actualPoint);
     }

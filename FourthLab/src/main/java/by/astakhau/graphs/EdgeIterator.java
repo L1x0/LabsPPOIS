@@ -7,13 +7,26 @@ import java.util.NoSuchElementException;
 public class EdgeIterator  {
     Graph graph;
     private ArrayList<ArrayList<String>> adjacencyMatrix;
-    int actualX = 1, actualY = 1;
+    int actualX, actualY;
 
     public EdgeIterator(int startX, int startY, Graph graph) {
-        this.actualX = startX;
-        this.actualY = startY;
+        if (startX <= 0 || startY <= 0) {
+            throw new IllegalArgumentException("startX and startY must be positive");
+        }
+
         this.graph = graph;
         this.adjacencyMatrix = graph.getAdjacencyMatrix();
+
+        boolean found = false;
+        for (actualX = startX; actualX < adjacencyMatrix.size() && !found; actualX++) {
+            for (actualY = startY; actualY < adjacencyMatrix.size(); actualY++) {
+                if (adjacencyMatrix.get(actualX).get(actualY).equals("1")) {
+                    found = true;
+                    break;
+                }
+            }
+
+        }
     }
 
     public EdgeIterator(Graph graph) {
@@ -40,10 +53,12 @@ public class EdgeIterator  {
     
     public String next() {
         if (!hasNext()) throw new NoSuchElementException();
+        boolean found = false;
 
-        for (int i = actualX; i < adjacencyMatrix.size(); i++) {
+        for (int i = actualX; i < adjacencyMatrix.size() && !found; i++) {
             for (int j = actualY; j < adjacencyMatrix.get(i).size(); j++) {
                 if (this.adjacencyMatrix.get(i).get(j).equals("1")){
+                    found = true;
 
                     actualX = i;
                     actualY = j;
@@ -60,8 +75,8 @@ public class EdgeIterator  {
     public boolean hasPrevious() {
         boolean hasPrevios = false;
 
-        for (int i = actualX; i >= 0; i--) {
-            for (int j = actualY; j >= 0; j--) {
+        for (int i = actualX; i >= 1; i--) {
+            for (int j = actualY; j >= 1; j--) {
                 if (this.adjacencyMatrix.get(i).get(j).equals("1")){
                     hasPrevios = true;
 
@@ -76,13 +91,15 @@ public class EdgeIterator  {
     
     public String previous() {
         if (!hasPrevious()) throw new NoSuchElementException();
+        boolean found = false;
 
-        for (int i = actualX; i >= 0; i--) {
+        for (int i = actualX; i >= 0 && !found; i--) {
             for (int j = actualY; j >= 0; j--) {
                 if (this.adjacencyMatrix.get(i).get(j).equals("1")){
 
                     actualX = i;
                     actualY = j;
+                    found = true;
 
                     break;
                 }
@@ -93,11 +110,9 @@ public class EdgeIterator  {
     }
 
     public void remove() {
-        String firstName = this.adjacencyMatrix.get(0).get(actualX);
-        String secondName = this.adjacencyMatrix.get(0).get(actualY);
+        this.adjacencyMatrix.get(actualX).set(actualY, "0");
 
-        graph.removeEdge(firstName, secondName);
-        this.adjacencyMatrix = graph.getAdjacencyMatrix();
+        graph.setAdjacencyMatrix(this.adjacencyMatrix);
     }
 
     
@@ -106,12 +121,4 @@ public class EdgeIterator  {
         graph.setAdjacencyMatrix(this.adjacencyMatrix);
     }
 
-    
-    public void add(String s) {
-        String firstName = this.adjacencyMatrix.get(0).get(actualX);
-        String secondName = this.adjacencyMatrix.get(0).get(actualY);
-
-        graph.addEdge(firstName, secondName);
-        this.adjacencyMatrix = graph.getAdjacencyMatrix();
-    }
 }

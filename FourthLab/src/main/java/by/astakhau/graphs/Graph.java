@@ -83,8 +83,10 @@ public class Graph implements AdjacencyMatrix {
 
         int count = 0;
 
+        int index = this.adjacencyMatrix.get(0).indexOf(name);
+
         for (int i = 1; i < this.adjacencyMatrix.size(); i++) {
-            if (this.adjacencyMatrix.get(i).get(this.adjacencyMatrix.indexOf(name)).equals("1")) {
+            if (this.adjacencyMatrix.get(i).get(index).equals("1")) {
                 count++;
             }
         }
@@ -96,8 +98,10 @@ public class Graph implements AdjacencyMatrix {
         getVertexException(name);
 
         int count = 0;
+        int index = this.adjacencyMatrix.get(0).indexOf(name);
+
         for (int i = 1; i < this.adjacencyMatrix.size(); i++) {
-            if (this.adjacencyMatrix.get(this.adjacencyMatrix.indexOf(name)).get(i).equals("1"))
+            if (this.adjacencyMatrix.get(index).get(i).equals("1"))
                 count++;
         }
         return count;
@@ -125,17 +129,17 @@ public class Graph implements AdjacencyMatrix {
     public void addVertex(String name) {
         this.adjacencyMatrix.add(new ArrayList<>());
         this.adjacencyMatrix.get(this.adjacencyMatrix.size() - 1).add(name);
-        this.adjacencyMatrix.get(0).add(this.adjacencyMatrix.get(0).size() - 1, name);
+        this.adjacencyMatrix.get(0).add(this.adjacencyMatrix.get(0).size(), name);
 
 
-        for (int i = 1; i < this.adjacencyMatrix.size() - 1; i++) {
-            this.adjacencyMatrix.get(i).add(this.adjacencyMatrix.get(i).size() - 1, "0");
+        for (int i = 1; i <= this.adjacencyMatrix.size() - 1; i++) {
+            this.adjacencyMatrix.get(i).add(this.adjacencyMatrix.get(i).size(), "0");
         }
 
         while (this.adjacencyMatrix.get(adjacencyMatrix.size() - 1).size() != adjacencyMatrix.get(0).size()) {
             this.adjacencyMatrix
                     .get(adjacencyMatrix.size() - 1)
-                    .add(this.adjacencyMatrix.get(0).size() - 1, "0");
+                    .add("0");
         }
     }
 
@@ -149,7 +153,7 @@ public class Graph implements AdjacencyMatrix {
             this.adjacencyMatrix.get(i).add(index, "0");
         }
 
-        while (this.adjacencyMatrix.get(index).size() != adjacencyMatrix.get(0).size()) {
+        while (this.adjacencyMatrix.get(index).size() < adjacencyMatrix.get(0).size()) {
             this.adjacencyMatrix
                     .get(index)
                     .add(index, "0");
@@ -191,6 +195,12 @@ public class Graph implements AdjacencyMatrix {
         }
         getVertexException(name);
 
+        int index = this.adjacencyMatrix.get(0).indexOf(name);
+
+        for (int i = 1; i < this.adjacencyMatrix.size(); i++) {
+            this.adjacencyMatrix.get(i).remove(index);
+        }
+
         for (int i = 1; i < this.adjacencyMatrix.size(); i++) {
             if (this.adjacencyMatrix.get(i).get(0).equals(name)) {
                 this.adjacencyMatrix.remove(i);
@@ -231,7 +241,8 @@ public class Graph implements AdjacencyMatrix {
 
     @Override
     public void clear() {
-        this.adjacencyMatrix.clear();
+        this.adjacencyMatrix = null;
+        this.adjacencyMatrix = new Graph().getAdjacencyMatrix();
     }
 
     @Override
