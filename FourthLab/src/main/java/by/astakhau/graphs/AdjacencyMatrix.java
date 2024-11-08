@@ -16,8 +16,8 @@ public interface AdjacencyMatrix {
     void removeEdge(String FromVertex, String ToVertex);
     void clear();
 
-    VertexIterator getVertexIterator();
-    EdgeIterator getEdgeIterator();
-    ConstEdgeIterator getConstEdgeIterator();
-    ConstVertexIterator getConstVertexIterator();
+    VertexIterator getVertexIterator(int startPoint);
+    EdgeIterator getEdgeIterator(int startX, int startY);
+    ConstEdgeIterator getConstEdgeIterator(int startX, int startY);
+    ConstVertexIterator getConstVertexIterator(int startPoint);
 }

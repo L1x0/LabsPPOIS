@@ -1,24 +1,94 @@
 package by.astakhau.graphs;
 
-public class ConstEdgeIterator implements ConstIterator<String> {
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
-    @Override
+public class ConstEdgeIterator {
+
+    Graph graph;
+    private ArrayList<ArrayList<String>> adjacencyMatrix;
+    int actualX = 1, actualY = 1;
+
+    public ConstEdgeIterator(int startX, int startY, Graph graph) {
+        this.actualX = startX;
+        this.actualY = startY;
+        this.graph = graph;
+        this.adjacencyMatrix = graph.getAdjacencyMatrix();
+    }
+
+    public ConstEdgeIterator(Graph graph) {
+        this.graph = graph;
+        this.adjacencyMatrix = graph.getAdjacencyMatrix();
+    }
+
     public boolean hasNext() {
-        return false;
+        boolean hasNext = false;
+
+        for (int i = actualX; i < adjacencyMatrix.size(); i++) {
+            for (int j = actualY; j < adjacencyMatrix.get(i).size(); j++) {
+                if (this.adjacencyMatrix.get(i).get(j).equals("1")){
+                    hasNext = true;
+
+                    break;
+                }
+            }
+        }
+
+        return hasNext;
     }
 
-    @Override
+
     public String next() {
-        return "";
+        if (!hasNext()) throw new NoSuchElementException();
+
+        for (int i = actualX; i < adjacencyMatrix.size(); i++) {
+            for (int j = actualY; j < adjacencyMatrix.get(i).size(); j++) {
+                if (this.adjacencyMatrix.get(i).get(j).equals("1")){
+
+                    actualX = i;
+                    actualY = j;
+
+                    break;
+                }
+            }
+        }
+
+        return this.adjacencyMatrix.get(actualX).get(actualY);
     }
 
-    @Override
+
     public boolean hasPrevious() {
-        return false;
+        boolean hasPrevios = false;
+
+        for (int i = actualX; i >= 0; i--) {
+            for (int j = actualY; j >= 0; j--) {
+                if (this.adjacencyMatrix.get(i).get(j).equals("1")){
+                    hasPrevios = true;
+
+                    break;
+                }
+            }
+        }
+
+        return hasPrevios;
     }
 
-    @Override
+
     public String previous() {
-        return "";
+        if (!hasPrevious()) throw new NoSuchElementException();
+
+        for (int i = actualX; i >= 0; i--) {
+            for (int j = actualY; j >= 0; j--) {
+                if (this.adjacencyMatrix.get(i).get(j).equals("1")){
+
+                    actualX = i;
+                    actualY = j;
+
+                    break;
+                }
+            }
+        }
+
+        return this.adjacencyMatrix.get(actualX).get(actualY);
     }
 }

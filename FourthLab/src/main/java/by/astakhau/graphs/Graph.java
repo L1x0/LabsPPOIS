@@ -235,22 +235,26 @@ public class Graph implements AdjacencyMatrix {
     }
 
     @Override
-    public VertexIterator getVertexIterator() {
-        return null;
+    public VertexIterator getVertexIterator(int startPoint) {
+        return new VertexIterator(startPoint, this);
     }
 
     @Override
-    public EdgeIterator getEdgeIterator() {
-        return null;
+    public EdgeIterator getEdgeIterator(int startX, int startY) {
+        return new EdgeIterator(startX, startY, this);
     }
 
     @Override
-    public ConstEdgeIterator getConstEdgeIterator() {
-        return null;
+    public ConstEdgeIterator getConstEdgeIterator(int startX, int startY) {
+        return new ConstEdgeIterator(startX, startY, this);
     }
 
     @Override
-    public ConstVertexIterator getConstVertexIterator() {
-        return null;
+    public ConstVertexIterator getConstVertexIterator(int startPoint) {
+        return new ConstVertexIterator(startPoint, this);
+    }
+
+    public IteratorOverIncidentVertices getIteratorOverIncidentVertices(String name) {
+        return new IteratorOverIncidentVertices(name, this);
     }
 }
