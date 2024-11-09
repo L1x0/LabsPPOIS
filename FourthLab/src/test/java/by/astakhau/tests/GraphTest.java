@@ -8,7 +8,7 @@ public class GraphTest {
 
     @Test
     public void addVertexTest() {
-        Graph graph = new Graph();
+        Graph<String> graph = new Graph("0", "1");
 
         graph.addVertex("A");
         assertEquals(1, graph.getVertexCount());
@@ -23,7 +23,7 @@ public class GraphTest {
 
     @Test
     public void addEdgeTest() {
-        Graph graph = new Graph();
+        Graph<String> graph = new Graph("0", "1");
 
         graph.addVertex("A");
         graph.addVertex("B");
@@ -36,7 +36,7 @@ public class GraphTest {
 
     @Test
     public void hasEdgeTest() {
-        Graph graph = new Graph();
+        Graph<String> graph = new Graph("0", "1");
 
         graph.addVertex("A");
         graph.addVertex("B");
@@ -49,7 +49,7 @@ public class GraphTest {
 
     @Test
     public void hasVertexTest() {
-        Graph graph = new Graph();
+        Graph<String> graph = new Graph("0", "1");
 
         graph.addVertex("A");
         graph.addVertex("B");
@@ -62,14 +62,14 @@ public class GraphTest {
 
     @Test
     public void isEmptyTest() {
-        Graph graph = new Graph();
+        Graph<String> graph = new Graph("0", "1");
 
         assertTrue(graph.isEmpty());
     }
 
     @Test
     public void getInVertexDegreeTest() {
-        Graph graph = new Graph();
+        Graph<String> graph = new Graph("0", "1");
 
         graph.addVertex("A");
         graph.addVertex("B");
@@ -80,7 +80,7 @@ public class GraphTest {
 
     @Test
     public void getOutVertexDegreeTest() {
-        Graph graph = new Graph();
+        Graph<String> graph = new Graph("0", "1");
 
         graph.addVertex("A");
         graph.addVertex("B");
@@ -91,7 +91,7 @@ public class GraphTest {
 
     @Test
     public void removeVertexTest() {
-        Graph graph = new Graph();
+        Graph<String> graph = new Graph("0", "1");
 
         graph.addVertex("A");
         graph.addVertex("B");
@@ -105,7 +105,7 @@ public class GraphTest {
 
     @Test
     public void removeEdgeTest() {
-        Graph graph = new Graph();
+        Graph<String> graph = new Graph("0", "1");
 
         graph.addVertex("A");
         graph.addVertex("B");
@@ -118,7 +118,7 @@ public class GraphTest {
 
     @Test
     public void clearTest() {
-        Graph graph = new Graph();
+        Graph<String> graph = new Graph("0", "1");
         graph.addVertex("A");
         graph.addVertex("B");
         graph.addVertex("C");
@@ -132,7 +132,7 @@ public class GraphTest {
 
     @Test
     public void getIteratorsTest() {
-        Graph graph = new Graph();
+        Graph<String> graph = new Graph("0", "1");
         graph.addVertex("A");
 
         assertEquals(VertexIterator.class, graph.getVertexIterator(1).getClass());

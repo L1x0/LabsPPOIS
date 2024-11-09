@@ -4,9 +4,9 @@ package by.astakhau.graphs;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class EdgeIterator  {
+public class EdgeIterator<T>  {
     Graph graph;
-    private ArrayList<ArrayList<String>> adjacencyMatrix;
+    private ArrayList<ArrayList<T>> adjacencyMatrix;
     int actualX, actualY;
 
     public EdgeIterator(int startX, int startY, Graph graph) {
@@ -51,7 +51,7 @@ public class EdgeIterator  {
     }
 
     
-    public String next() {
+    public T next() {
         if (!hasNext()) throw new NoSuchElementException();
         boolean found = false;
 
@@ -89,7 +89,7 @@ public class EdgeIterator  {
     }
 
     
-    public String previous() {
+    public T previous() {
         if (!hasPrevious()) throw new NoSuchElementException();
         boolean found = false;
 
@@ -110,13 +110,13 @@ public class EdgeIterator  {
     }
 
     public void remove() {
-        this.adjacencyMatrix.get(actualX).set(actualY, "0");
+        this.adjacencyMatrix.get(actualX).set(actualY, null);
 
         graph.setAdjacencyMatrix(this.adjacencyMatrix);
     }
 
     
-    public void set(String s) {
+    public void set(T s) {
         this.adjacencyMatrix.get(actualX).set(actualY, s);
         graph.setAdjacencyMatrix(this.adjacencyMatrix);
     }

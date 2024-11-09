@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
-public class VertexIterator implements ListIterator<String> {
+public class VertexIterator<T> implements ListIterator<T> {
     private int actualPoint;
     Graph graph;
-    private ArrayList<ArrayList<String>> adjacencyMatrix;
+    private ArrayList<ArrayList<T>> adjacencyMatrix;
 
     public VertexIterator(int startPoint, Graph graph) {
         if (startPoint <= 0) {
@@ -30,7 +30,7 @@ public class VertexIterator implements ListIterator<String> {
     }
 
     @Override
-    public String next() {
+    public T next() {
         actualPoint++;
         return this.adjacencyMatrix.get(0).get(actualPoint);
     }
@@ -41,7 +41,7 @@ public class VertexIterator implements ListIterator<String> {
     }
 
     @Override
-    public String previous() {
+    public T previous() {
         if (!hasPrevious()) {
             throw new NoSuchElementException();
         }
@@ -73,7 +73,7 @@ public class VertexIterator implements ListIterator<String> {
     }
 
     @Override
-    public void set(String s) {
+    public void set(T s) {
         this.adjacencyMatrix.get(0).set(actualPoint, s);
         this.adjacencyMatrix.get(actualPoint).set(0, s);
 
@@ -81,7 +81,7 @@ public class VertexIterator implements ListIterator<String> {
     }
 
     @Override
-    public void add(String s) {
+    public void add(T s) {
         graph.addVertex(s, actualPoint);
     }
 }

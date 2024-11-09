@@ -3,13 +3,13 @@ package by.astakhau.graphs;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class IteratorOverIncidentVertices {
+public class IteratorOverIncidentVertices<T> {
     private int actualIndex;
     ArrayList<Integer> coords;
     Graph graph;
-    private ArrayList<ArrayList<String>> adjacencyMatrix;
+    private ArrayList<ArrayList<T>> adjacencyMatrix;
 
-    public IteratorOverIncidentVertices(String name, Graph graph) {
+    public IteratorOverIncidentVertices(T name, Graph graph) {
         this.graph = graph;
         adjacencyMatrix = graph.getAdjacencyMatrix();
 
@@ -36,7 +36,7 @@ public class IteratorOverIncidentVertices {
         return actualIndex + 1 <= this.coords.size() - 1;
     }
 
-    public String next() {
+    public T next() {
         if (!hasNext()) { throw new NoSuchElementException(); }
 
         actualIndex++;
@@ -47,7 +47,7 @@ public class IteratorOverIncidentVertices {
         return actualIndex - 1 >= 0;
     }
 
-    public String previous() {
+    public T previous() {
         if (!hasPrevious()) { throw new NoSuchElementException(); }
 
         actualIndex--;

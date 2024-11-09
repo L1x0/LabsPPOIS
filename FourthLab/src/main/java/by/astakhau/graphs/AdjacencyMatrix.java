@@ -1,19 +1,19 @@
 package by.astakhau.graphs;
 
-public interface AdjacencyMatrix {
+public interface AdjacencyMatrix<T> {
     boolean hasVertex();
-    boolean hasEdge(String firstVertex, String secondVertex);
+    boolean hasEdge(T firstVertex, T secondVertex);
     boolean isEmpty();
 
     int getVertexCount();
     int getEdgeCount();
-    int getInVertexDegree(String name);
-    int getOutVertexDegree(String name);
+    int getInVertexDegree(T name);
+    int getOutVertexDegree(T name);
 
-    void addVertex(String name);
-    void addEdge(String FromVertex, String ToVertex);
-    void removeVertex(String name);
-    void removeEdge(String FromVertex, String ToVertex);
+    void addVertex(T name);
+    void addEdge(T FromVertex, T ToVertex);
+    void removeVertex(T name);
+    void removeEdge(T FromVertex, T ToVertex);
     void clear();
 
     VertexIterator getVertexIterator(int startPoint);

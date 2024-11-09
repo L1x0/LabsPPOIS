@@ -3,11 +3,10 @@ package by.astakhau.tests;
 import by.astakhau.graphs.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeAll;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class IteratorsTest {
-    private static Graph graph;
+    private static Graph<String> graph;
     private static VertexIterator vertexIterator;
     private static EdgeIterator edgeIterator;
     private static ConstEdgeIterator constEdgeIterator;
@@ -16,7 +15,7 @@ public class IteratorsTest {
 
     @BeforeEach
     public void setUp() {
-        graph = new Graph();
+        graph = new Graph<>("0", "1");
         graph.addVertex("A");
         graph.addVertex("B");
         graph.addVertex("C");

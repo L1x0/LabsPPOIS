@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
-public class ConstVertexIterator implements ConstIterator<String> {
+public class ConstVertexIterator<T> implements ConstIterator<T> {
     private int actualPoint;
     Graph graph;
-    private ArrayList<ArrayList<String>> adjacencyMatrix;
+    private ArrayList<ArrayList<T>> adjacencyMatrix;
 
     public ConstVertexIterator(int startPoint, Graph graph) {
         if (startPoint <= 0) {
@@ -30,7 +30,7 @@ public class ConstVertexIterator implements ConstIterator<String> {
     }
 
     @Override
-    public String next() {
+    public T next() {
         actualPoint++;
         return this.adjacencyMatrix.get(0).get(actualPoint);
     }
@@ -41,7 +41,7 @@ public class ConstVertexIterator implements ConstIterator<String> {
     }
 
     @Override
-    public String previous() {
+    public T previous() {
         if (!hasPrevious()) {
             throw new NoSuchElementException();
         }

@@ -3,10 +3,10 @@ package by.astakhau.graphs;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class ConstEdgeIterator {
+public class ConstEdgeIterator<T> {
 
     Graph graph;
-    private ArrayList<ArrayList<String>> adjacencyMatrix;
+    private ArrayList<ArrayList<T>> adjacencyMatrix;
     int actualX = 1, actualY = 1;
 
     public ConstEdgeIterator(int startX, int startY, Graph graph) {
@@ -42,7 +42,7 @@ public class ConstEdgeIterator {
     }
 
 
-    public String next() {
+    public T next() {
         if (!hasNext()) throw new NoSuchElementException();
 
         for (int i = actualX; i < adjacencyMatrix.size(); i++) {
@@ -78,7 +78,7 @@ public class ConstEdgeIterator {
     }
 
 
-    public String previous() {
+    public T previous() {
         if (!hasPrevious()) throw new NoSuchElementException();
 
         for (int i = actualX; i >= 0; i--) {

@@ -3,25 +3,33 @@ package by.astakhau.graphs;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class Graph implements AdjacencyMatrix {
-    private ArrayList<ArrayList<String>> adjacencyMatrix;
+public class Graph<T> implements AdjacencyMatrix<T> {
+    private ArrayList<ArrayList<T>> adjacencyMatrix;
 
-    public void setAdjacencyMatrix(ArrayList<ArrayList<String>> adjacencyMatrix) {
+    T zero;
+    T entity;
+
+    public void setAdjacencyMatrix(ArrayList<ArrayList<T>> adjacencyMatrix) {
         this.adjacencyMatrix = adjacencyMatrix;
     }
 
-    public Graph() {
+    public Graph(T zero, T entity) {
         adjacencyMatrix = new ArrayList<>();
         adjacencyMatrix.add(new ArrayList<>());
 
-        adjacencyMatrix.get(0).add("L");
+        adjacencyMatrix.get(0).add(zero);
+        
+        this.zero = zero;
+        this.entity = entity;
     }
 
-    public Graph(Graph g) {
+    public Graph(Graph g, T zero, T entity) {
         this.adjacencyMatrix = g.getAdjacencyMatrix();
+        this.zero = zero;
+        this.entity = entity;
     }
 
-    public ArrayList<ArrayList<String>> getAdjacencyMatrix() {
+    public ArrayList<ArrayList<T>> getAdjacencyMatrix() {
         return this.adjacencyMatrix;
     }
 
@@ -30,8 +38,7 @@ public class Graph implements AdjacencyMatrix {
         return !this.adjacencyMatrix.get(0).isEmpty();
     }
 
-    @Override
-    public boolean hasEdge(String firstVertex, String secondVertex) {
+    public boolean hasEdge(T firstVertex, T secondVertex) {
         if (!this.hasVertex()) {
             return false;
         } else {
@@ -78,7 +85,7 @@ public class Graph implements AdjacencyMatrix {
     }
 
     @Override
-    public int getInVertexDegree(String name) {
+    public int getInVertexDegree(T name) {
         getVertexException(name);
 
         int count = 0;
@@ -94,7 +101,7 @@ public class Graph implements AdjacencyMatrix {
     }
 
     @Override
-    public int getOutVertexDegree(String name) {
+    public int getOutVertexDegree(T name) {
         getVertexException(name);
 
         int count = 0;
@@ -107,7 +114,7 @@ public class Graph implements AdjacencyMatrix {
         return count;
     }
 
-    private void getVertexException(String name) {
+    private void getVertexException(T name) {
         if (!this.hasVertex()) {
             throw new NoSuchElementException("Graph has no vertex");
         }
@@ -126,42 +133,42 @@ public class Graph implements AdjacencyMatrix {
     }
 
     @Override
-    public void addVertex(String name) {
+    public void addVertex(T name) {
         this.adjacencyMatrix.add(new ArrayList<>());
         this.adjacencyMatrix.get(this.adjacencyMatrix.size() - 1).add(name);
         this.adjacencyMatrix.get(0).add(this.adjacencyMatrix.get(0).size(), name);
 
 
         for (int i = 1; i <= this.adjacencyMatrix.size() - 1; i++) {
-            this.adjacencyMatrix.get(i).add(this.adjacencyMatrix.get(i).size(), "0");
+            this.adjacencyMatrix.get(i).add(this.adjacencyMatrix.get(i).size(), zero);
         }
 
         while (this.adjacencyMatrix.get(adjacencyMatrix.size() - 1).size() != adjacencyMatrix.get(0).size()) {
             this.adjacencyMatrix
                     .get(adjacencyMatrix.size() - 1)
-                    .add("0");
+                    .add(zero);
         }
     }
 
-    public void addVertex(String name, int index) {
+    public void addVertex(T name, int index) {
         this.adjacencyMatrix.add(new ArrayList<>());
         this.adjacencyMatrix.get(index).add(name);
         this.adjacencyMatrix.get(0).add(index, name);
 
 
         for (int i = 1; i < this.adjacencyMatrix.size() - 1; i++) {
-            this.adjacencyMatrix.get(i).add(index, "0");
+            this.adjacencyMatrix.get(i).add(index, zero);
         }
 
         while (this.adjacencyMatrix.get(index).size() < adjacencyMatrix.get(0).size()) {
             this.adjacencyMatrix
                     .get(index)
-                    .add(index, "0");
+                    .add(index, zero);
         }
     }
 
     @Override
-    public void addEdge(String FromVertex, String ToVertex) {
+    public void addEdge(T FromVertex, T ToVertex) {
         if (!this.hasVertex()) {
             throw new NoSuchElementException("Graph has no vertex");
         }
@@ -185,11 +192,11 @@ public class Graph implements AdjacencyMatrix {
             }
         }
 
-        this.adjacencyMatrix.get(firstIndex).set(secondIndex, "1");
+        this.adjacencyMatrix.get(firstIndex).set(secondIndex, entity);
     }
 
     @Override
-    public void removeVertex(String name) {
+    public void removeVertex(T name) {
         if (!this.hasVertex()) {
             throw new NoSuchElementException("Graph has no vertex");
         }
@@ -212,7 +219,7 @@ public class Graph implements AdjacencyMatrix {
     }
 
     @Override
-    public void removeEdge(String FromVertex, String ToVertex) {
+    public void removeEdge(T FromVertex, T ToVertex) {
         if (!this.hasVertex()) {
             throw new NoSuchElementException("Graph has no vertex");
         }
@@ -236,13 +243,13 @@ public class Graph implements AdjacencyMatrix {
             }
         }
 
-        this.adjacencyMatrix.get(firstIndex).set(secondIndex, "0");
+        this.adjacencyMatrix.get(firstIndex).set(secondIndex, zero);
     }
 
     @Override
     public void clear() {
         this.adjacencyMatrix = null;
-        this.adjacencyMatrix = new Graph().getAdjacencyMatrix();
+        this.adjacencyMatrix = new Graph(zero, entity).getAdjacencyMatrix();
     }
 
     @Override
@@ -265,7 +272,7 @@ public class Graph implements AdjacencyMatrix {
         return new ConstVertexIterator(startPoint, this);
     }
 
-    public IteratorOverIncidentVertices getIteratorOverIncidentVertices(String name) {
+    public IteratorOverIncidentVertices getIteratorOverIncidentVertices(T name) {
         return new IteratorOverIncidentVertices(name, this);
     }
 }
