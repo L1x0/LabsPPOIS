@@ -80,7 +80,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.All in ThirdLab">
+  <component name="RunManager">
     <configuration name="All in ThirdLab" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ThirdLab" />
       <option name="PACKAGE_NAME" value="" />
@@ -147,6 +147,19 @@
       <option name="MAIN_CLASS_NAME" value="by.astakhau.test.MemberTest" />
       <option name="METHOD_NAME" value="addBookTest" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="ThirdLab" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="ThirdLab" />
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
