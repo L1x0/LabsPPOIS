@@ -1,6 +1,4 @@
-package by.astakhau;
-
-import by.astakhau.librarymanegmentsystem.Library;
+package by.astakhau.librarymanegmentsystem;
 
 public class Main {
     public static void main(String[] args) {

@@ -40,7 +40,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>by.astakhau.Main</mainClass> <!-- Укажите путь к вашему классу Main -->
+                            <mainClass>by.astakhau.librarymanegmentsystem.Main</mainClass> <!-- Укажите путь к вашему классу Main -->
                         </manifest>
                     </archive>
                 </configuration>
