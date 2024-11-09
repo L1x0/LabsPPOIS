@@ -4,11 +4,11 @@ import java.util.List;
 
 public class Library {
     Author author;
-    private String name;
-    private Catalog catalog;
-    private Librarian librarian;
-    private List<LibraryCard> cards;
-    private List<Member> members;
+     String name;
+     Catalog catalog;
+     Librarian librarian;
+     List<LibraryCard> cards;
+     List<Member> members;
 
     public Library(Author author, String name, Catalog catalog, Librarian librarian,
                    List<LibraryCard> cards, List<Member> members) {
