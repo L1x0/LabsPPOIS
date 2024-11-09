@@ -1,6 +1,4 @@
-package by.astakhau;
-
-import by.astakhau.graphs.Graph;
+package by.astakhau.graphs;
 
 public class Main {
     public static void main(String[] args) {
