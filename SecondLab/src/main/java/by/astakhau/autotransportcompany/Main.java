@@ -1,6 +1,4 @@
-package by.astakhau;
-
-import by.astakhau.autotransportcompany.Company;
+package by.astakhau.autotransportcompany;
 
 public class Main {
     public static void main(String[] args) {
