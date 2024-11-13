@@ -1,11 +1,15 @@
 package by.astakhau.bonuslab.service;
 
+import by.astakhau.bonuslab.data.Client;
 import by.astakhau.bonuslab.data.Order;
 import by.astakhau.bonuslab.data.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class OrderService {
@@ -25,8 +29,10 @@ public class OrderService {
         return orderRepository.findById(id);
     }
 
-    public Iterable<Order> getAllOrders() {
-        return orderRepository.findAll();
+    public List<Order> getAllOrders() {
+        Iterable<Order> ordersIterable = orderRepository.findAll();
+        return StreamSupport.stream(ordersIterable.spliterator(), false)
+                .collect(Collectors.toList());
     }
 
     public void deleteOrderById(Long id) {

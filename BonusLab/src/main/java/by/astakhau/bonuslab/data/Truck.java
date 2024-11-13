@@ -1,6 +1,7 @@
 package by.astakhau.bonuslab.data;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -9,6 +10,8 @@ import java.util.LinkedList;
 @Data
 @Table("trucks")
 public class Truck {
+    @Id
+    Long id;
     private String color;
     private String model;
     private String engine;
