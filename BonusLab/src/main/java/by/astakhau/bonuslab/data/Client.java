@@ -11,7 +11,6 @@ public class Client extends People {
     @Id
     private long id;
     private int order_id;
-    private Departments department;
 
     public Client(String name, int age) {
         super(name, age);

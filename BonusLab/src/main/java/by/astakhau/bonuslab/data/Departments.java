@@ -4,5 +4,9 @@ public enum Departments {
     MarketingDepartment,
     LogisticsDepartment,
     FinanceDepartment,
-    TechnicalDepartment
+    TechnicalDepartment;
+
+    public String toStringValue() {
+        return this.name();
+    }
 }

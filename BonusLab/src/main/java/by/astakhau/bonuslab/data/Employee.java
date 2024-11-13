@@ -25,4 +25,5 @@ public class Employee {
     @Column(value = "experience")
     public Integer experience;
 
+    private Departments department;
 }
