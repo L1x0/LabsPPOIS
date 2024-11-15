@@ -7,3 +7,4 @@ import org.springframework.stereotype.Repository;
 public interface ClientRepository extends CrudRepository<Client, Long> {
     void deleteByOrderId(Long orderId);
 }
+

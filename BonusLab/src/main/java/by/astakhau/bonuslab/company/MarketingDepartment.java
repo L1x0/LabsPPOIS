@@ -1,4 +1,4 @@
-package by.astakhau.bonuslab.departments;
+package by.astakhau.bonuslab.company;
 
 import by.astakhau.bonuslab.data.Client;
 import by.astakhau.bonuslab.data.Departments;
@@ -7,9 +7,12 @@ import by.astakhau.bonuslab.data.Order;
 import by.astakhau.bonuslab.service.ClientService;
 import by.astakhau.bonuslab.service.EmployeeService;
 import by.astakhau.bonuslab.service.OrderService;
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class MarketingDepartment {
@@ -20,8 +23,10 @@ public class MarketingDepartment {
     ArrayList<Client> clients;
 
     OrderService orderService;
+    @Getter
     ArrayList<Order> orders;
 
+    @Autowired
     public MarketingDepartment(EmployeeService employeeService, ClientService clientService, OrderService orderService) {
         this.employeeService = employeeService;
         this.employees = new ArrayList<>(employeeService.getEmployeesByDepartment(Departments.MarketingDepartment));
@@ -43,20 +48,43 @@ public class MarketingDepartment {
         employeeService.deleteEmployee(employee.getId());
     }
 
-    public void addOrder(Order order, Client client) {
+    public void addOrder(Order order) {
         orders.add(order);
         orderService.saveOrder(order);
-
-        client.setOrder_id(order.getId());
-        clients.add(client);
-        clientService.saveClient(client);
     }
 
-    public void deleteOrder(Order order, Client client) {
+    public void deleteOrder(Order order) {
         orders.remove(order);
-        clients.remove(client);
+        for (Client client : clients) {
+            if (client.getOrderId() == order.getId()) {
+                clients.remove(client);
+                break;
+            }
+        }
 
         orderService.deleteOrderById(order.getId());
         clientService.deleteByOrderId(order.getId());
+    }
+
+    public Employee findEmployeeById(long id) {
+        for (Employee employee : employees) {
+            if (employee.getId() == id) {
+                return employee;
+            }
+        }
+        return null;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public Order findOrderById(long id) {
+        for (Order order : orders) {
+            if (order.getId() == id) {
+                return order;
+            }
+        }
+        return null;
     }
 }

@@ -2,6 +2,7 @@ package by.astakhau.bonuslab.data;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Data
@@ -9,15 +10,18 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Order {
     @Id
     private long id;
-    private int customerId;
-    private int productId;
-    private String country;
+    @Column("client_id")
+    private long client_id;
+    @Column("product")
+    private String product;
+    @Column("destination_country")
+    private String destination_country;
 
-    public Order(String country, int productId, int customerId, int id) {
-        this.country = country;
-        this.productId = productId;
-        this.customerId = customerId;
+    public Order(long id, long client_id,
+                 String product, String destination_country) {
         this.id = id;
+        this.client_id = client_id;
+        this.product = product;
+        this.destination_country = destination_country;
     }
-
 }

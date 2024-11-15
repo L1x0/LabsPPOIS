@@ -1,4 +1,4 @@
-package by.astakhau.bonuslab.departments;
+package by.astakhau.bonuslab.company;
 
 import by.astakhau.bonuslab.data.Departments;
 import by.astakhau.bonuslab.data.Employee;
@@ -47,5 +47,23 @@ public class TechnicalDepartment {
     public void removeTruck(Truck truck) {
         trucks.remove(truck);
         truckService.deleteTruckById(truck.getId());
+    }
+
+    public Employee findEmployeeById(long id) {
+        for (Employee employee : employees) {
+            if (employee.getId() == id) {
+                return employee;
+            }
+        }
+        return null;
+    }
+
+    public Truck findTruckById(long id) {
+        for (Truck truck : trucks) {
+            if (truck.getId() == id) {
+                return truck;
+            }
+        }
+        return null;
     }
 }

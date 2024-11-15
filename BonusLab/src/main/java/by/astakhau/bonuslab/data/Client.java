@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @EqualsAndHashCode(callSuper = true)
@@ -14,7 +15,8 @@ public class Client extends People {
     @Id
     private long id;
     @Setter
-    private long order_id;
+    @Column("order_id")
+    private long orderId;
 
     public Client(String name, int age) {
         super(name, age);

@@ -1,6 +1,7 @@
 package by.astakhau.bonuslab.data;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -22,8 +23,17 @@ public class Truck {
     private int maxWeight;
     @Column("number_of_axes")
     private int numberOfAxes;
-    LinkedList<String> route;
 
-    public Truck() {
+    public Truck(Long id, String color, String model, String engine,
+                 int maxSpeed, int weight, int maxWeight, int numberOfAxes) {
+        this.id = id;
+        this.color = color;
+        this.model = model;
+        this.engine = engine;
+        this.maxSpeed = maxSpeed;
+        this.weight = weight;
+        this.maxWeight = maxWeight;
+        this.numberOfAxes = numberOfAxes;
     }
+
 }

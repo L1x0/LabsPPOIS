@@ -1,6 +1,5 @@
 package by.astakhau.bonuslab.service;
 
-import by.astakhau.bonuslab.data.Client;
 import by.astakhau.bonuslab.data.Order;
 import by.astakhau.bonuslab.data.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +20,8 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public Order saveOrder(Order order) {
-        return orderRepository.save(order);
+    public void saveOrder(Order order) {
+        orderRepository.save(order);
     }
 
     public Optional<Order> getOrderById(Long id) {

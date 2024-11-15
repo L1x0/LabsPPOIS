@@ -1,4 +1,4 @@
-package by.astakhau.bonuslab.departments;
+package by.astakhau.bonuslab.company;
 
 import by.astakhau.bonuslab.data.Departments;
 import by.astakhau.bonuslab.data.Employee;
@@ -38,4 +38,18 @@ public class FinanceDepartment {
     public void addBalance(long amount) {
         balance += amount;
     }
+
+    public void removeBalance(long amount) {
+        balance -= amount;
+    }
+
+    public Employee findEmployeeById(long id) {
+        for (Employee employee : employees) {
+            if (employee.getId() == id) {
+                return employee;
+            }
+        }
+        return null;
+    }
+
 }
